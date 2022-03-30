@@ -10,3 +10,50 @@
 	font-family: monospace; white-space: pre;
 }
 
+.overflow-container {
+	overflow:hidden;
+}
+
+.menu-container {
+	align-content: center;
+	padding: 1rem;
+	position: relative;
+	max-height: 750px;
+	overflow: hidden;
+}
+
+.menu-container img {
+	box-sizing: content-box;
+	position: relative;
+	width: max-content;
+	height: 750px;
+	animation: moving 30s linear infinite;
+}
+
+@keyframes moving {
+	from{
+		transform: translateX(0px)
+	}
+	to {
+		transform: translateX(-10%)
+	}
+}
+.menu-container .menu-list {
+	margin: 0;
+	position: absolute;
+	top: 45%;
+	width: 100%;
+	align-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.menu-item {
+	display: inline-flex;
+	position: center;
+	padding: 0.5rem;
+}
+
+
