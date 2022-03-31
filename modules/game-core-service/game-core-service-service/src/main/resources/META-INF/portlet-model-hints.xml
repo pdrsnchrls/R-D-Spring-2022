@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.react.game.core.service.model.Ability">
+		<field name="uuid" type="String" />
+		<field name="abilityId" type="long" />
+		<field name="abilityName" type="String" />
+		<field name="healing" type="boolean" />
+		<field name="hitPoints" type="int" />
+	</model>
+	<model name="com.liferay.react.game.core.service.model.Enemy">
+		<field name="uuid" type="String" />
+		<field name="enemyId" type="long" />
+		<field name="enemyName" type="String" />
+		<field name="level" type="int" />
+		<field name="hitPoints" type="int" />
+		<field name="xpDrop" type="int" />
+		<field name="imageURL" type="String" />
+	</model>
+	<model name="com.liferay.react.game.core.service.model.Player">
+		<field name="uuid" type="String" />
+		<field name="playerId" type="long" />
+		<field name="userId" type="long" />
+		<field name="playerName" type="String" />
+		<field name="level" type="int" />
+		<field name="xpPoints" type="int" />
+		<field name="hitPoints" type="int" />
+	</model>
+	<model name="com.liferay.react.game.core.service.model.PlayerEnemyAbility">
+		<field name="uuid" type="String" />
+		<field name="playerEnemyAbilityId" type="long" />
+		<field name="enemy" type="boolean" />
+		<field name="playerOrEnemyId" type="long" />
+		<field name="abilityId" type="long" />
+	</model>
+</model-hints>
