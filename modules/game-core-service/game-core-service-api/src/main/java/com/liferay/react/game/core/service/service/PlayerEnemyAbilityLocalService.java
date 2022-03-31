@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.react.game.core.service.model.Ability;
 import com.liferay.react.game.core.service.model.PlayerEnemyAbility;
 
 import java.io.Serializable;
@@ -241,6 +242,9 @@ public interface PlayerEnemyAbilityLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PlayerEnemyAbility> getPlayerEnemyAbilities(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Ability> getPlayerEnemyAbilities(long playerOrEnemyId);
 
 	/**
 	 * Returns the number of player enemy abilities.

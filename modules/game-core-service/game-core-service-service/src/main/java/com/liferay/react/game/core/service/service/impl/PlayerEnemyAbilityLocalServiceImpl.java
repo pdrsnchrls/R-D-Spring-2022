@@ -15,10 +15,13 @@
 package com.liferay.react.game.core.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.react.game.core.service.model.Ability;
 import com.liferay.react.game.core.service.model.PlayerEnemyAbility;
 import com.liferay.react.game.core.service.service.base.PlayerEnemyAbilityLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -45,4 +48,7 @@ public class PlayerEnemyAbilityLocalServiceImpl
 			playerEnemyAbility);
 	}
 
+	public List<Ability> getPlayerEnemyAbilities(long playerOrEnemyId) {
+		return playerEnemyAbilityFinder.findByPlayerOrEnemyId(playerOrEnemyId);
+	}
 }

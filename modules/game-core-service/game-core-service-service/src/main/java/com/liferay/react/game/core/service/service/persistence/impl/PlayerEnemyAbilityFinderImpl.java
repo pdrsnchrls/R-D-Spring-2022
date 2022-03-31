@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Component(service = PlayerEnemyAbilityFinder.class)
-public class PlayerEnemyAbilityFinderImpl extends BasePersistenceImpl<PlayerEnemyAbility> implements PlayerEnemyAbilityFinder {
+public class PlayerEnemyAbilityFinderImpl extends PlayerEnemyAbilityFinderBaseImpl implements PlayerEnemyAbilityFinder {
     public List<Ability> findByPlayerOrEnemyId(long playerOrEnemyId) {
 
         DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(PlayerEnemyAbility.class, ClassLoader.getSystemClassLoader())

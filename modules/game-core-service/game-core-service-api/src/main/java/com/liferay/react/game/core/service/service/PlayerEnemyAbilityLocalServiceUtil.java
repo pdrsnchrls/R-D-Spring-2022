@@ -271,6 +271,12 @@ public class PlayerEnemyAbilityLocalServiceUtil {
 		return getService().getPlayerEnemyAbilities(start, end);
 	}
 
+	public static List<com.liferay.react.game.core.service.model.Ability>
+		getPlayerEnemyAbilities(long playerOrEnemyId) {
+
+		return getService().getPlayerEnemyAbilities(playerOrEnemyId);
+	}
+
 	/**
 	 * Returns the number of player enemy abilities.
 	 *

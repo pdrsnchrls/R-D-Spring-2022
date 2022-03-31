@@ -306,6 +306,14 @@ public class PlayerEnemyAbilityLocalServiceWrapper
 			start, end);
 	}
 
+	@Override
+	public java.util.List<com.liferay.react.game.core.service.model.Ability>
+		getPlayerEnemyAbilities(long playerOrEnemyId) {
+
+		return _playerEnemyAbilityLocalService.getPlayerEnemyAbilities(
+			playerOrEnemyId);
+	}
+
 	/**
 	 * Returns the number of player enemy abilities.
 	 *
