@@ -44,6 +44,11 @@ public class PlayerEnemyAbilityLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.react.game.core.service.service.impl.PlayerEnemyAbilityLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static void addPlayerEnemyAbility(
+		boolean enemy, long playerOrEnemyId, long abilityId) {
+
+		getService().addPlayerEnemyAbility(enemy, playerOrEnemyId, abilityId);
+	}
 
 	/**
 	 * Adds the player enemy ability to the database. Also notifies the appropriate model listeners.

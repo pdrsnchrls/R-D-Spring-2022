@@ -47,6 +47,15 @@ public class EnemyLocalServiceWrapper
 		return _enemyLocalService.addEnemy(enemy);
 	}
 
+	@Override
+	public com.liferay.react.game.core.service.model.Enemy addEnemy(
+		String enemyName, int hitPoints, int level, int xpDrop,
+		String imageURL) {
+
+		return _enemyLocalService.addEnemy(
+			enemyName, hitPoints, level, xpDrop, imageURL);
+	}
+
 	/**
 	 * Creates a new enemy with the primary key. Does not add the enemy to the database.
 	 *

@@ -75,6 +75,9 @@ public interface AbilityLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Ability addAbility(Ability ability);
 
+	public Ability addAbility(
+		String abilityName, boolean healing, int hitPoints);
+
 	/**
 	 * Creates a new ability with the primary key. Does not add the ability to the database.
 	 *

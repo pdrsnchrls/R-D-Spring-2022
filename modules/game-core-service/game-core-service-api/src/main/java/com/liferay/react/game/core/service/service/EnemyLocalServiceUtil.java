@@ -59,6 +59,14 @@ public class EnemyLocalServiceUtil {
 		return getService().addEnemy(enemy);
 	}
 
+	public static Enemy addEnemy(
+		String enemyName, int hitPoints, int level, int xpDrop,
+		String imageURL) {
+
+		return getService().addEnemy(
+			enemyName, hitPoints, level, xpDrop, imageURL);
+	}
+
 	/**
 	 * Creates a new enemy with the primary key. Does not add the enemy to the database.
 	 *

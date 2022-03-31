@@ -59,6 +59,12 @@ public class AbilityLocalServiceUtil {
 		return getService().addAbility(ability);
 	}
 
+	public static Ability addAbility(
+		String abilityName, boolean healing, int hitPoints) {
+
+		return getService().addAbility(abilityName, healing, hitPoints);
+	}
+
 	/**
 	 * Creates a new ability with the primary key. Does not add the ability to the database.
 	 *

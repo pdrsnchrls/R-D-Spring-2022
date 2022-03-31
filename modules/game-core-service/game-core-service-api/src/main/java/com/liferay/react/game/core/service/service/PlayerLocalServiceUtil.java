@@ -44,6 +44,9 @@ public class PlayerLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.react.game.core.service.service.impl.PlayerLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static Player addNewPlayer(String playerName, long userId) {
+		return getService().addNewPlayer(playerName, userId);
+	}
 
 	/**
 	 * Adds the player to the database. Also notifies the appropriate model listeners.
@@ -57,6 +60,10 @@ public class PlayerLocalServiceUtil {
 	 */
 	public static Player addPlayer(Player player) {
 		return getService().addPlayer(player);
+	}
+
+	public static Player addPlayerXP(long playerId, int xpPoints) {
+		return getService().addPlayerXP(playerId, xpPoints);
 	}
 
 	/**
@@ -271,6 +278,10 @@ public class PlayerLocalServiceUtil {
 	 */
 	public static int getPlayersCount() {
 		return getService().getPlayersCount();
+	}
+
+	public static Player levelUpPlayer(long playerId) {
+		return getService().levelUpPlayer(playerId);
 	}
 
 	/**

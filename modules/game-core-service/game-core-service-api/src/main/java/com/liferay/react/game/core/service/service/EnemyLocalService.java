@@ -75,6 +75,10 @@ public interface EnemyLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Enemy addEnemy(Enemy enemy);
 
+	public Enemy addEnemy(
+		String enemyName, int hitPoints, int level, int xpDrop,
+		String imageURL);
+
 	/**
 	 * Creates a new enemy with the primary key. Does not add the enemy to the database.
 	 *

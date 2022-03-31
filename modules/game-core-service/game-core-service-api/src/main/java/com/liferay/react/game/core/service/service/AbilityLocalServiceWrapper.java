@@ -47,6 +47,13 @@ public class AbilityLocalServiceWrapper
 		return _abilityLocalService.addAbility(ability);
 	}
 
+	@Override
+	public com.liferay.react.game.core.service.model.Ability addAbility(
+		String abilityName, boolean healing, int hitPoints) {
+
+		return _abilityLocalService.addAbility(abilityName, healing, hitPoints);
+	}
+
 	/**
 	 * Creates a new ability with the primary key. Does not add the ability to the database.
 	 *

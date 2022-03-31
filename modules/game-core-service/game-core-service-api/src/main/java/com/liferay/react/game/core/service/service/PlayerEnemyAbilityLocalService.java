@@ -61,6 +61,8 @@ public interface PlayerEnemyAbilityLocalService
 	 *
 	 * Never modify this interface directly. Add custom service methods to <code>com.liferay.react.game.core.service.service.impl.PlayerEnemyAbilityLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the player enemy ability local service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link PlayerEnemyAbilityLocalServiceUtil} if injection and service tracking are not available.
 	 */
+	public void addPlayerEnemyAbility(
+		boolean enemy, long playerOrEnemyId, long abilityId);
 
 	/**
 	 * Adds the player enemy ability to the database. Also notifies the appropriate model listeners.

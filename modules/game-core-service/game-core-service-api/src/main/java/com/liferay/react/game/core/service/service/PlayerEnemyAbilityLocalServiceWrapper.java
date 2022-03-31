@@ -33,6 +33,14 @@ public class PlayerEnemyAbilityLocalServiceWrapper
 		_playerEnemyAbilityLocalService = playerEnemyAbilityLocalService;
 	}
 
+	@Override
+	public void addPlayerEnemyAbility(
+		boolean enemy, long playerOrEnemyId, long abilityId) {
+
+		_playerEnemyAbilityLocalService.addPlayerEnemyAbility(
+			enemy, playerOrEnemyId, abilityId);
+	}
+
 	/**
 	 * Adds the player enemy ability to the database. Also notifies the appropriate model listeners.
 	 *

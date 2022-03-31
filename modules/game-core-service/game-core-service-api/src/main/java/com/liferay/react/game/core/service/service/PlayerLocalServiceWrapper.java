@@ -30,6 +30,13 @@ public class PlayerLocalServiceWrapper
 		_playerLocalService = playerLocalService;
 	}
 
+	@Override
+	public com.liferay.react.game.core.service.model.Player addNewPlayer(
+		String playerName, long userId) {
+
+		return _playerLocalService.addNewPlayer(playerName, userId);
+	}
+
 	/**
 	 * Adds the player to the database. Also notifies the appropriate model listeners.
 	 *
@@ -45,6 +52,13 @@ public class PlayerLocalServiceWrapper
 		com.liferay.react.game.core.service.model.Player player) {
 
 		return _playerLocalService.addPlayer(player);
+	}
+
+	@Override
+	public com.liferay.react.game.core.service.model.Player addPlayerXP(
+		long playerId, int xpPoints) {
+
+		return _playerLocalService.addPlayerXP(playerId, xpPoints);
 	}
 
 	/**
@@ -302,6 +316,13 @@ public class PlayerLocalServiceWrapper
 	@Override
 	public int getPlayersCount() {
 		return _playerLocalService.getPlayersCount();
+	}
+
+	@Override
+	public com.liferay.react.game.core.service.model.Player levelUpPlayer(
+		long playerId) {
+
+		return _playerLocalService.levelUpPlayer(playerId);
 	}
 
 	/**
