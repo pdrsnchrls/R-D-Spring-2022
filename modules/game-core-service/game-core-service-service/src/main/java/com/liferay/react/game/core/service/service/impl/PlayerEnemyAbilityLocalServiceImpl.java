@@ -30,14 +30,19 @@ import org.osgi.service.component.annotations.Component;
 public class PlayerEnemyAbilityLocalServiceImpl
 	extends PlayerEnemyAbilityLocalServiceBaseImpl {
 
-	public void addPlayerEnemyAbility(boolean enemy, long playerOrEnemyId, long abilityId) {
-		PlayerEnemyAbility playerEnemyAbility = playerEnemyAbilityLocalService.createPlayerEnemyAbility(counterLocalService.increment());
+	public void addPlayerEnemyAbility(
+		boolean enemy, long playerOrEnemyId, long abilityId) {
+
+		PlayerEnemyAbility playerEnemyAbility =
+			playerEnemyAbilityLocalService.createPlayerEnemyAbility(
+				counterLocalService.increment());
 
 		playerEnemyAbility.setEnemy(enemy);
 		playerEnemyAbility.setPlayerOrEnemyId(playerOrEnemyId);
 		playerEnemyAbility.setAbilityId(abilityId);
 
-		playerEnemyAbilityLocalService.addPlayerEnemyAbility(playerEnemyAbility);
-		
+		playerEnemyAbilityLocalService.addPlayerEnemyAbility(
+			playerEnemyAbility);
 	}
+
 }

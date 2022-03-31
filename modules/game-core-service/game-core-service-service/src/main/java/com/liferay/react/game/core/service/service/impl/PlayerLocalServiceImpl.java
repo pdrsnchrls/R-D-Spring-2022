@@ -18,9 +18,9 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.react.game.core.service.model.Player;
 import com.liferay.react.game.core.service.service.base.PlayerLocalServiceBaseImpl;
 
-import org.osgi.service.component.annotations.Component;
-
 import java.util.Objects;
+
+import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Brian Wing Shun Chan
@@ -32,7 +32,8 @@ import java.util.Objects;
 public class PlayerLocalServiceImpl extends PlayerLocalServiceBaseImpl {
 
 	public Player addNewPlayer(String playerName, long userId) {
-		Player player = playerLocalService.createPlayer(counterLocalService.increment());
+		Player player = playerLocalService.createPlayer(
+			counterLocalService.increment());
 
 		player.setPlayerName(playerName);
 		player.setUserId(userId);
@@ -40,9 +41,25 @@ public class PlayerLocalServiceImpl extends PlayerLocalServiceBaseImpl {
 		player.setXpPoints(0);
 		player.setHitPoints(50);
 
-		player = playerLocalService.addPlayer(player);
+		return playerLocalService.addPlayer(player);
+	}
 
-		return player;
+	public Player addPlayerXP(long playerId, int xpPoints) {
+		Player player = playerLocalService.fetchPlayer(playerId);
+
+		if (Objects.nonNull(player)) {
+			int totalXP = player.getXpPoints() + xpPoints;
+
+			player.setXpPoints(totalXP);
+
+			if ((totalXP % 100) >= 1) {
+				return levelUpPlayer(playerId);
+			}
+
+			return playerLocalService.updatePlayer(player);
+		}
+
+		return null;
 	}
 
 	public Player levelUpPlayer(long playerId) {
@@ -56,21 +73,4 @@ public class PlayerLocalServiceImpl extends PlayerLocalServiceBaseImpl {
 		return playerLocalService.updatePlayer(player);
 	}
 
-	public Player addPlayerXP(long playerId, int xpPoints) {
-		Player player = playerLocalService.fetchPlayer(playerId);
-
-		if (Objects.nonNull(player)) {
-			int totalXP = player.getXpPoints() + xpPoints;
-
-			player.setXpPoints(totalXP);
-
-			if (totalXP % 100 >= 1) {
-				return levelUpPlayer(playerId);
-			}
-
-			return playerLocalService.updatePlayer(player);
-		} else {
-			return null;
-		}
-	}
 }

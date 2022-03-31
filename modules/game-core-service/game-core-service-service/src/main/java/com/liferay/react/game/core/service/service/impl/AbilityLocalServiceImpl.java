@@ -29,15 +29,17 @@ import org.osgi.service.component.annotations.Component;
 )
 public class AbilityLocalServiceImpl extends AbilityLocalServiceBaseImpl {
 
-	public Ability addAbility(String abilityName, boolean healing, int hitPoints) {
-		Ability ability = abilityLocalService.createAbility(counterLocalService.increment());
+	public Ability addAbility(
+		String abilityName, boolean healing, int hitPoints) {
+
+		Ability ability = abilityLocalService.createAbility(
+			counterLocalService.increment());
 
 		ability.setAbilityName(abilityName);
 		ability.setHealing(healing);
 		ability.setHitPoints(Math.abs(hitPoints));
 
-		ability = abilityLocalService.addAbility(ability);
-
-		return ability;
+		return abilityLocalService.addAbility(ability);
 	}
+
 }

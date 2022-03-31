@@ -42,10 +42,10 @@ public class EnemyLocalServiceImpl extends EnemyLocalServiceBaseImpl {
 		enemy.setXpDrop(xpDrop);
 
 		int xp = level * 10;
+
 		enemy.setXpDrop(xp);
 
-		enemy = enemyLocalService.addEnemy(enemy);
-
-		return enemy;
+		return enemyLocalService.addEnemy(enemy);
 	}
+
 }
