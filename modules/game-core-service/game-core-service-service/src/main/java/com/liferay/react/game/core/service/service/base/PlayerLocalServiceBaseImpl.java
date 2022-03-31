@@ -43,6 +43,7 @@ import com.liferay.react.game.core.service.service.PlayerLocalService;
 import com.liferay.react.game.core.service.service.PlayerLocalServiceUtil;
 import com.liferay.react.game.core.service.service.persistence.AbilityPersistence;
 import com.liferay.react.game.core.service.service.persistence.EnemyPersistence;
+import com.liferay.react.game.core.service.service.persistence.PlayerEnemyAbilityFinder;
 import com.liferay.react.game.core.service.service.persistence.PlayerEnemyAbilityPersistence;
 import com.liferay.react.game.core.service.service.persistence.PlayerPersistence;
 
@@ -464,6 +465,9 @@ public abstract class PlayerLocalServiceBaseImpl
 
 	@Reference
 	protected PlayerEnemyAbilityPersistence playerEnemyAbilityPersistence;
+
+	@Reference
+	protected PlayerEnemyAbilityFinder playerEnemyAbilityFinder;
 
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
