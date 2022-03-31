@@ -1,0 +1,9 @@
+apiDir: "../game-rest-api/src/main/java"
+apiPackagePath: "com.liferay.react.game.rest"
+application:
+    baseURI: "/game-rest"
+    className: "GameRestApplication"
+    name: "GameRest"
+author: "Charles Pederson"
+clientDir: "../game-rest-client/src/main/java"
+testDir: "../game-rest-test/src/testIntegration/java"

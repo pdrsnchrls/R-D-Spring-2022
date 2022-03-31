@@ -1,0 +1,3 @@
+Bundle-Name: game-rest-impl
+Bundle-SymbolicName: game.rest.impl
+Bundle-Version: 1.0.0

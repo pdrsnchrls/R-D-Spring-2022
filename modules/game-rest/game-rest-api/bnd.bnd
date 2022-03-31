@@ -1,0 +1,6 @@
+Bundle-Name: game-rest-api
+Bundle-SymbolicName: game.rest.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	game.rest.dto.v1_0,\
+	game.rest.resource.v1_0

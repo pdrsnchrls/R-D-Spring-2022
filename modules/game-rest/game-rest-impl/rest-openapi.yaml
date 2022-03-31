@@ -1,0 +1,188 @@
+components:
+    schemas:
+        Ability:
+            description: hello
+            properties:
+                name:
+                    description: The ability's name
+                    type: string
+                id:
+                    description: The ability's internal id
+                    format: int64
+                    type: integer
+                healing:
+                    description: Whether or not the ability heals or not
+                    type: boolean
+                hitPoints:
+                    description: The amount of health the ability damages or heals
+                    format: int32
+                    type: integer
+        Enemy:
+            description: The enemy that will be fought
+            properties:
+                name:
+                    description: The enemy's name
+                    type: string
+                id:
+                    description: The enemy's internal ID.
+                    format: int64
+                    type: integer
+                abilities:
+                    description: The abilites the enemy has
+                    items:
+                        $ref: "#/components/schemas/Ability"
+                    type: array
+                hitPoints:
+                    description: The enemy's hit points
+                    format: int32
+                    type: integer
+                level:
+                    description: The enemy's level
+                    format: int32
+                    type: integer
+                xpDrop:
+                    description: The enemy's xp it drops when killed
+                    format: int32
+                    type: integer
+                image:
+                    description: the internal url to the enemy's image
+                    type: string
+            type: object
+        Player:
+            description: The user who is playing the game
+            properties:
+                name:
+                    description: The player's name
+                    type: string
+                id:
+                    description: The player's internal ID.
+                    format: int64
+                    type: integer
+                abilities:
+                    description: The abilites the user has
+                    items:
+                        $ref: "#/components/schemas/Ability"
+                    type: array
+                hitPoints:
+                    description: The players' hit points
+                    format: int32
+                    type: integer
+                level:
+                    description: The player's level
+                    format: int32
+                    type: integer
+                xp:
+                    description: The player's total xp
+                    format: int32
+                    type: integer
+                image:
+                    description: the internal url to the player's image
+                    type: string
+            type: object
+openapi: 3.0.1
+info:
+    description: "GameRest REST API for accessing game details"
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "GameRest"
+    version: v1.0
+paths:
+    "/player/{playerId}":
+        get:
+            tags: ["Player"]
+            description: "Retrieves the player via its ID."
+            parameters:
+                - name: playerId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+        patch:
+            tags: ["Player"]
+            description: "Replaces the player with information sent in the request body. Ignores missing fields"
+            parameters:
+                - name: playerId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Player"
+            responses:
+                200:
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+    "/enemy/{enemyId}":
+        get:
+            tags: ["Enemy"]
+            description: "Retrieves the enemy via its ID."
+            parameters:
+                - name: enemyId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Enemy"
+        patch:
+            tags: ["Enemy"]
+            description: "Replaces the enemy with information sent in the request body. Ignores missing fields"
+            parameters:
+                - name: enemyId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Enemy"
+            responses:
+                200:
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Enemy"
+    "/ability/{abilityId}":
+        get:
+            tags: ["Ability"]
+            description: "Retrieves the ability via its ID."
+            parameters:
+                - name: abilityId
+                  in: path
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Ability"
