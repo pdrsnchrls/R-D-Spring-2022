@@ -185,6 +185,150 @@ public interface PlayerEnemyAbilityPersistence
 	public int countByUuid(String uuid);
 
 	/**
+	 * Returns all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @return the matching player enemy abilities
+	 */
+	public java.util.List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId);
+
+	/**
+	 * Returns a range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @return the range of matching player enemy abilities
+	 */
+	public java.util.List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching player enemy abilities
+	 */
+	public java.util.List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching player enemy abilities
+	 */
+	public java.util.List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a matching player enemy ability could not be found
+	 */
+	public PlayerEnemyAbility findByPlayerOrEnemyId_First(
+			long playerOrEnemyId,
+			com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+				orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException;
+
+	/**
+	 * Returns the first player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching player enemy ability, or <code>null</code> if a matching player enemy ability could not be found
+	 */
+	public PlayerEnemyAbility fetchByPlayerOrEnemyId_First(
+		long playerOrEnemyId,
+		com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+			orderByComparator);
+
+	/**
+	 * Returns the last player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a matching player enemy ability could not be found
+	 */
+	public PlayerEnemyAbility findByPlayerOrEnemyId_Last(
+			long playerOrEnemyId,
+			com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+				orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException;
+
+	/**
+	 * Returns the last player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching player enemy ability, or <code>null</code> if a matching player enemy ability could not be found
+	 */
+	public PlayerEnemyAbility fetchByPlayerOrEnemyId_Last(
+		long playerOrEnemyId,
+		com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+			orderByComparator);
+
+	/**
+	 * Returns the player enemy abilities before and after the current player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerEnemyAbilityId the primary key of the current player enemy ability
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a player enemy ability with the primary key could not be found
+	 */
+	public PlayerEnemyAbility[] findByPlayerOrEnemyId_PrevAndNext(
+			long playerEnemyAbilityId, long playerOrEnemyId,
+			com.liferay.portal.kernel.util.OrderByComparator<PlayerEnemyAbility>
+				orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException;
+
+	/**
+	 * Removes all the player enemy abilities where playerOrEnemyId = &#63; from the database.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 */
+	public void removeByPlayerOrEnemyId(long playerOrEnemyId);
+
+	/**
+	 * Returns the number of player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @return the number of matching player enemy abilities
+	 */
+	public int countByPlayerOrEnemyId(long playerOrEnemyId);
+
+	/**
 	 * Caches the player enemy ability in the entity cache if it is enabled.
 	 *
 	 * @param playerEnemyAbility the player enemy ability

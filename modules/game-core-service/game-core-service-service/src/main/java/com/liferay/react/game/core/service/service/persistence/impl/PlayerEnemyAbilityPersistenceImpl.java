@@ -636,6 +636,519 @@ public class PlayerEnemyAbilityPersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_UUID_3 =
 		"(playerEnemyAbility.uuid IS NULL OR playerEnemyAbility.uuid = '')";
 
+	private FinderPath _finderPathWithPaginationFindByPlayerOrEnemyId;
+	private FinderPath _finderPathWithoutPaginationFindByPlayerOrEnemyId;
+	private FinderPath _finderPathCountByPlayerOrEnemyId;
+
+	/**
+	 * Returns all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @return the matching player enemy abilities
+	 */
+	@Override
+	public List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId) {
+
+		return findByPlayerOrEnemyId(
+			playerOrEnemyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @return the range of matching player enemy abilities
+	 */
+	@Override
+	public List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end) {
+
+		return findByPlayerOrEnemyId(playerOrEnemyId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching player enemy abilities
+	 */
+	@Override
+	public List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end,
+		OrderByComparator<PlayerEnemyAbility> orderByComparator) {
+
+		return findByPlayerOrEnemyId(
+			playerOrEnemyId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>PlayerEnemyAbilityModelImpl</code>.
+	 * </p>
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param start the lower bound of the range of player enemy abilities
+	 * @param end the upper bound of the range of player enemy abilities (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching player enemy abilities
+	 */
+	@Override
+	public List<PlayerEnemyAbility> findByPlayerOrEnemyId(
+		long playerOrEnemyId, int start, int end,
+		OrderByComparator<PlayerEnemyAbility> orderByComparator,
+		boolean useFinderCache) {
+
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+			(orderByComparator == null)) {
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByPlayerOrEnemyId;
+				finderArgs = new Object[] {playerOrEnemyId};
+			}
+		}
+		else if (useFinderCache) {
+			finderPath = _finderPathWithPaginationFindByPlayerOrEnemyId;
+			finderArgs = new Object[] {
+				playerOrEnemyId, start, end, orderByComparator
+			};
+		}
+
+		List<PlayerEnemyAbility> list = null;
+
+		if (useFinderCache) {
+			list = (List<PlayerEnemyAbility>)finderCache.getResult(
+				finderPath, finderArgs);
+
+			if ((list != null) && !list.isEmpty()) {
+				for (PlayerEnemyAbility playerEnemyAbility : list) {
+					if (playerOrEnemyId !=
+							playerEnemyAbility.getPlayerOrEnemyId()) {
+
+						list = null;
+
+						break;
+					}
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler sb = null;
+
+			if (orderByComparator != null) {
+				sb = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				sb = new StringBundler(3);
+			}
+
+			sb.append(_SQL_SELECT_PLAYERENEMYABILITY_WHERE);
+
+			sb.append(_FINDER_COLUMN_PLAYERORENEMYID_PLAYERORENEMYID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(
+					sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			}
+			else {
+				sb.append(PlayerEnemyAbilityModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(playerOrEnemyId);
+
+				list = (List<PlayerEnemyAbility>)QueryUtil.list(
+					query, getDialect(), start, end);
+
+				cacheResult(list);
+
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a matching player enemy ability could not be found
+	 */
+	@Override
+	public PlayerEnemyAbility findByPlayerOrEnemyId_First(
+			long playerOrEnemyId,
+			OrderByComparator<PlayerEnemyAbility> orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException {
+
+		PlayerEnemyAbility playerEnemyAbility = fetchByPlayerOrEnemyId_First(
+			playerOrEnemyId, orderByComparator);
+
+		if (playerEnemyAbility != null) {
+			return playerEnemyAbility;
+		}
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("playerOrEnemyId=");
+		sb.append(playerOrEnemyId);
+
+		sb.append("}");
+
+		throw new NoSuchPlayerEnemyAbilityException(sb.toString());
+	}
+
+	/**
+	 * Returns the first player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching player enemy ability, or <code>null</code> if a matching player enemy ability could not be found
+	 */
+	@Override
+	public PlayerEnemyAbility fetchByPlayerOrEnemyId_First(
+		long playerOrEnemyId,
+		OrderByComparator<PlayerEnemyAbility> orderByComparator) {
+
+		List<PlayerEnemyAbility> list = findByPlayerOrEnemyId(
+			playerOrEnemyId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a matching player enemy ability could not be found
+	 */
+	@Override
+	public PlayerEnemyAbility findByPlayerOrEnemyId_Last(
+			long playerOrEnemyId,
+			OrderByComparator<PlayerEnemyAbility> orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException {
+
+		PlayerEnemyAbility playerEnemyAbility = fetchByPlayerOrEnemyId_Last(
+			playerOrEnemyId, orderByComparator);
+
+		if (playerEnemyAbility != null) {
+			return playerEnemyAbility;
+		}
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("playerOrEnemyId=");
+		sb.append(playerOrEnemyId);
+
+		sb.append("}");
+
+		throw new NoSuchPlayerEnemyAbilityException(sb.toString());
+	}
+
+	/**
+	 * Returns the last player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching player enemy ability, or <code>null</code> if a matching player enemy ability could not be found
+	 */
+	@Override
+	public PlayerEnemyAbility fetchByPlayerOrEnemyId_Last(
+		long playerOrEnemyId,
+		OrderByComparator<PlayerEnemyAbility> orderByComparator) {
+
+		int count = countByPlayerOrEnemyId(playerOrEnemyId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<PlayerEnemyAbility> list = findByPlayerOrEnemyId(
+			playerOrEnemyId, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the player enemy abilities before and after the current player enemy ability in the ordered set where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerEnemyAbilityId the primary key of the current player enemy ability
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next player enemy ability
+	 * @throws NoSuchPlayerEnemyAbilityException if a player enemy ability with the primary key could not be found
+	 */
+	@Override
+	public PlayerEnemyAbility[] findByPlayerOrEnemyId_PrevAndNext(
+			long playerEnemyAbilityId, long playerOrEnemyId,
+			OrderByComparator<PlayerEnemyAbility> orderByComparator)
+		throws NoSuchPlayerEnemyAbilityException {
+
+		PlayerEnemyAbility playerEnemyAbility = findByPrimaryKey(
+			playerEnemyAbilityId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			PlayerEnemyAbility[] array = new PlayerEnemyAbilityImpl[3];
+
+			array[0] = getByPlayerOrEnemyId_PrevAndNext(
+				session, playerEnemyAbility, playerOrEnemyId, orderByComparator,
+				true);
+
+			array[1] = playerEnemyAbility;
+
+			array[2] = getByPlayerOrEnemyId_PrevAndNext(
+				session, playerEnemyAbility, playerOrEnemyId, orderByComparator,
+				false);
+
+			return array;
+		}
+		catch (Exception exception) {
+			throw processException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected PlayerEnemyAbility getByPlayerOrEnemyId_PrevAndNext(
+		Session session, PlayerEnemyAbility playerEnemyAbility,
+		long playerOrEnemyId,
+		OrderByComparator<PlayerEnemyAbility> orderByComparator,
+		boolean previous) {
+
+		StringBundler sb = null;
+
+		if (orderByComparator != null) {
+			sb = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			sb = new StringBundler(3);
+		}
+
+		sb.append(_SQL_SELECT_PLAYERENEMYABILITY_WHERE);
+
+		sb.append(_FINDER_COLUMN_PLAYERORENEMYID_PLAYERORENEMYID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				sb.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			sb.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						sb.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC);
+					}
+					else {
+						sb.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			sb.append(PlayerEnemyAbilityModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = sb.toString();
+
+		Query query = session.createQuery(sql);
+
+		query.setFirstResult(0);
+		query.setMaxResults(2);
+
+		QueryPos queryPos = QueryPos.getInstance(query);
+
+		queryPos.add(playerOrEnemyId);
+
+		if (orderByComparator != null) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						playerEnemyAbility)) {
+
+				queryPos.add(orderByConditionValue);
+			}
+		}
+
+		List<PlayerEnemyAbility> list = query.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the player enemy abilities where playerOrEnemyId = &#63; from the database.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 */
+	@Override
+	public void removeByPlayerOrEnemyId(long playerOrEnemyId) {
+		for (PlayerEnemyAbility playerEnemyAbility :
+				findByPlayerOrEnemyId(
+					playerOrEnemyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
+			remove(playerEnemyAbility);
+		}
+	}
+
+	/**
+	 * Returns the number of player enemy abilities where playerOrEnemyId = &#63;.
+	 *
+	 * @param playerOrEnemyId the player or enemy ID
+	 * @return the number of matching player enemy abilities
+	 */
+	@Override
+	public int countByPlayerOrEnemyId(long playerOrEnemyId) {
+		FinderPath finderPath = _finderPathCountByPlayerOrEnemyId;
+
+		Object[] finderArgs = new Object[] {playerOrEnemyId};
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs);
+
+		if (count == null) {
+			StringBundler sb = new StringBundler(2);
+
+			sb.append(_SQL_COUNT_PLAYERENEMYABILITY_WHERE);
+
+			sb.append(_FINDER_COLUMN_PLAYERORENEMYID_PLAYERORENEMYID_2);
+
+			String sql = sb.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query query = session.createQuery(sql);
+
+				QueryPos queryPos = QueryPos.getInstance(query);
+
+				queryPos.add(playerOrEnemyId);
+
+				count = (Long)query.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception exception) {
+				throw processException(exception);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String
+		_FINDER_COLUMN_PLAYERORENEMYID_PLAYERORENEMYID_2 =
+			"playerEnemyAbility.playerOrEnemyId = ?";
+
 	public PlayerEnemyAbilityPersistenceImpl() {
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
@@ -1202,6 +1715,24 @@ public class PlayerEnemyAbilityPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] {String.class.getName()}, new String[] {"uuid_"},
 			false);
+
+		_finderPathWithPaginationFindByPlayerOrEnemyId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByPlayerOrEnemyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			},
+			new String[] {"playerOrEnemyId"}, true);
+
+		_finderPathWithoutPaginationFindByPlayerOrEnemyId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByPlayerOrEnemyId",
+			new String[] {Long.class.getName()},
+			new String[] {"playerOrEnemyId"}, true);
+
+		_finderPathCountByPlayerOrEnemyId = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPlayerOrEnemyId",
+			new String[] {Long.class.getName()},
+			new String[] {"playerOrEnemyId"}, false);
 
 		_setPlayerEnemyAbilityUtilPersistence(this);
 	}
