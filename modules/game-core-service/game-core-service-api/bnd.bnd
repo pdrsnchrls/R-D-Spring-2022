@@ -1,0 +1,10 @@
+Bundle-Name: game-core-service-api
+Bundle-SymbolicName: com.liferay.react.game.core.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.react.game.core.service.exception,\
+	com.liferay.react.game.core.service.model,\
+	com.liferay.react.game.core.service.service,\
+	com.liferay.react.game.core.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../game-core-service-service/service.xml
