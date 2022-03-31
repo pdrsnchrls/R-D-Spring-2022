@@ -61,6 +61,10 @@
 		<column name="enemy" type="boolean" />
 		<column name="playerOrEnemyId" type="long" />
 		<column name="abilityId" type="long" />
+
+		<finder name="PlayerOrEnemyId" return-type="Collection">
+			<finder-column name="playerOrEnemyId" />
+		</finder>
 	</entity>
 
 </service-builder>
