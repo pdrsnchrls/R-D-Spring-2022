@@ -1,5 +1,6 @@
 dependencies {
 	compile group: "com.liferay", name: "com.liferay.portal.upgrade.api"
-
+	compile project(":modules:game-core-service:game-core-service-api")
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
 }

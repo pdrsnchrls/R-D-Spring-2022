@@ -7,14 +7,26 @@ import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
 
+import com.liferay.react.game.core.service.service.AbilityLocalService;
+import com.liferay.react.game.core.service.service.EnemyLocalService;
+import com.liferay.react.game.core.service.service.PlayerEnemyAbilityLocalService;
+import com.liferay.react.game.core.service.service.PlayerLocalService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(immediate = true, service = DependencyProvider.class)
 public class DependencyProvider {
 
+	public AbilityLocalService getAbilityLocalService() {
+		return _abilityLocalService;
+	}
+
 	public CompanyLocalService getCompanyLocalService() {
 		return _companyLocalService;
+	}
+
+	public EnemyLocalService getEnemyLocalService() {
+		return _enemyLocalService;
 	}
 
 	public GroupLocalService getGroupLocalService() {
@@ -23,6 +35,14 @@ public class DependencyProvider {
 
 	public LayoutLocalService getLayoutLocalService() {
 		return _layoutLocalService;
+	}
+
+	public PlayerEnemyAbilityLocalService getPlayerEnemyAbilityLocalService() {
+		return _playerEnemyAbilityLocalService;
+	}
+
+	public PlayerLocalService getPlayerLocalService() {
+		return _playerLocalService;
 	}
 
 	public Portal getPortal() {
@@ -38,6 +58,9 @@ public class DependencyProvider {
 	}
 
 	@Reference
+	private AbilityLocalService _abilityLocalService;
+
+	@Reference
 	private CompanyLocalService _companyLocalService;
 
 	@Reference
@@ -45,6 +68,15 @@ public class DependencyProvider {
 
 	@Reference
 	private LayoutLocalService _layoutLocalService;
+
+	@Reference
+	private EnemyLocalService _enemyLocalService;
+
+	@Reference
+	private PlayerEnemyAbilityLocalService _playerEnemyAbilityLocalService;
+
+	@Reference
+	private PlayerLocalService _playerLocalService;
 
 	@Reference
 	private Portal _portal;
