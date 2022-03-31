@@ -15,6 +15,7 @@
 package com.liferay.react.game.core.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.react.game.core.service.model.Ability;
 import com.liferay.react.game.core.service.service.base.AbilityLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,4 +28,16 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class AbilityLocalServiceImpl extends AbilityLocalServiceBaseImpl {
+
+	public Ability addAbility(String abilityName, boolean healing, int hitPoints) {
+		Ability ability = abilityLocalService.createAbility(counterLocalService.increment());
+
+		ability.setAbilityName(abilityName);
+		ability.setHealing(healing);
+		ability.setHitPoints(Math.abs(hitPoints));
+
+		ability = abilityLocalService.addAbility(ability);
+
+		return ability;
+	}
 }

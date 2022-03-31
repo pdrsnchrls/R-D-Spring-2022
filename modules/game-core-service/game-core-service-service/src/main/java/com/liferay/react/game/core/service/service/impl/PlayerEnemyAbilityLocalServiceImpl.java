@@ -15,6 +15,7 @@
 package com.liferay.react.game.core.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.react.game.core.service.model.PlayerEnemyAbility;
 import com.liferay.react.game.core.service.service.base.PlayerEnemyAbilityLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -28,4 +29,15 @@ import org.osgi.service.component.annotations.Component;
 )
 public class PlayerEnemyAbilityLocalServiceImpl
 	extends PlayerEnemyAbilityLocalServiceBaseImpl {
+
+	public void addPlayerEnemyAbility(boolean enemy, long playerOrEnemyId, long abilityId) {
+		PlayerEnemyAbility playerEnemyAbility = playerEnemyAbilityLocalService.createPlayerEnemyAbility(counterLocalService.increment());
+
+		playerEnemyAbility.setEnemy(enemy);
+		playerEnemyAbility.setPlayerOrEnemyId(playerOrEnemyId);
+		playerEnemyAbility.setAbilityId(abilityId);
+
+		playerEnemyAbilityLocalService.addPlayerEnemyAbility(playerEnemyAbility);
+		
+	}
 }

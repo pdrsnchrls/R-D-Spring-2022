@@ -15,9 +15,12 @@
 package com.liferay.react.game.core.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.react.game.core.service.model.Player;
 import com.liferay.react.game.core.service.service.base.PlayerLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+
+import java.util.Objects;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,4 +30,47 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class PlayerLocalServiceImpl extends PlayerLocalServiceBaseImpl {
+
+	public Player addNewPlayer(String playerName, long userId) {
+		Player player = playerLocalService.createPlayer(counterLocalService.increment());
+
+		player.setPlayerName(playerName);
+		player.setUserId(userId);
+		player.setLevel(0);
+		player.setXpPoints(0);
+		player.setHitPoints(50);
+
+		player = playerLocalService.addPlayer(player);
+
+		return player;
+	}
+
+	public Player levelUpPlayer(long playerId) {
+		Player player = playerLocalService.fetchPlayer(playerId);
+
+		if (Objects.nonNull(player)) {
+			player.setLevel(player.getLevel() + 1);
+			player.setHitPoints(player.getHitPoints() + 5);
+		}
+
+		return playerLocalService.updatePlayer(player);
+	}
+
+	public Player addPlayerXP(long playerId, int xpPoints) {
+		Player player = playerLocalService.fetchPlayer(playerId);
+
+		if (Objects.nonNull(player)) {
+			int totalXP = player.getXpPoints() + xpPoints;
+
+			player.setXpPoints(totalXP);
+
+			if (totalXP % 100 >= 1) {
+				return levelUpPlayer(playerId);
+			}
+
+			return playerLocalService.updatePlayer(player);
+		} else {
+			return null;
+		}
+	}
 }

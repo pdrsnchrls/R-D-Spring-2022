@@ -15,6 +15,7 @@
 package com.liferay.react.game.core.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.react.game.core.service.model.Enemy;
 import com.liferay.react.game.core.service.service.base.EnemyLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,4 +28,20 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class EnemyLocalServiceImpl extends EnemyLocalServiceBaseImpl {
+
+	public Enemy addEnemy(String enemyName, int hitPoints, int level, String imageURL) {
+		Enemy enemy = enemyLocalService.createEnemy(counterLocalService.increment());
+
+		enemy.setEnemyName(enemyName);
+		enemy.setHitPoints(hitPoints);
+		enemy.setLevel(level);
+		enemy.setImageURL(imageURL);
+
+		int xp = level * 10;
+		enemy.setXpDrop(xp);
+
+		enemy = enemyLocalService.addEnemy(enemy);
+
+		return enemy;
+	}
 }
