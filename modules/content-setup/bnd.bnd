@@ -1,0 +1,4 @@
+Bundle-Name: content-setup
+Bundle-SymbolicName: com.liferay.react.game.setup
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.react.game.setup.api
