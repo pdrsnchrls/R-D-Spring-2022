@@ -81,7 +81,9 @@ components:
             type: object
 openapi: 3.0.1
 info:
-    description: "GameRest REST API for accessing game details"
+    description:
+        "GameRest REST API for accessing game details. A Java client JAR is available for use with the group ID
+        'com.liferay', artifact ID 'com.liferay.react.game.rest.client', and version '1.0.0'."
     license:
         name: "Apache 2.0"
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -106,6 +108,9 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/Player"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Player"
         patch:
             tags: ["Player"]
             description: "Replaces the player with information sent in the request body. Ignores missing fields"
@@ -121,11 +126,17 @@ paths:
                     application/json:
                         schema:
                             $ref: "#/components/schemas/Player"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/Player"
             responses:
                 200:
                     description: ""
                     content:
                         application/json:
+                            schema:
+                                $ref: "#/components/schemas/Player"
+                        application/xml:
                             schema:
                                 $ref: "#/components/schemas/Player"
     "/enemy/{enemyId}":
@@ -146,6 +157,9 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/Enemy"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Enemy"
         patch:
             tags: ["Enemy"]
             description: "Replaces the enemy with information sent in the request body. Ignores missing fields"
@@ -161,11 +175,17 @@ paths:
                     application/json:
                         schema:
                             $ref: "#/components/schemas/Enemy"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/Enemy"
             responses:
                 200:
                     description: ""
                     content:
                         application/json:
+                            schema:
+                                $ref: "#/components/schemas/Enemy"
+                        application/xml:
                             schema:
                                 $ref: "#/components/schemas/Enemy"
     "/ability/{abilityId}":
@@ -184,5 +204,8 @@ paths:
                     description: ""
                     content:
                         application/json:
+                            schema:
+                                $ref: "#/components/schemas/Ability"
+                        application/xml:
                             schema:
                                 $ref: "#/components/schemas/Ability"
