@@ -2,49 +2,65 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
 
 <service-builder dependency-injector="ds" package-path="com.liferay.react.game.core.service">
-	<namespace>FOO</namespace>
-	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
+	<namespace>ReactGame</namespace>
+	<entity local-service="true" name="Ability" remote-service="false" uuid="true">
+		<!--PK fields-->
+		<column name="abilityId" primary="true" type="long" />
 
-		<!-- PK fields -->
+		<!--Other fields-->
+		<column name="abilityName" type="String" />
+		<column name="healing" type="boolean" />
+		<column name="hitPoints" type="int" />
 
-		<column name="fooId" primary="true" type="long" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
-
-		<!-- Other fields -->
-
-		<column name="field1" type="String" />
-		<column name="field2" type="boolean" />
-		<column name="field3" type="int" />
-		<column name="field4" type="Date" />
-		<column name="field5" type="String" />
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="field1" />
-		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="Field2" return-type="Collection">
-			<finder-column name="field2" />
+		<!--Finder methods-->
+		<finder name="AbilityName" return-type="Collection">
+			<finder-column name="abilityName" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 	</entity>
+
+	<entity local-service="true" name="Enemy" remote-service="false" uuid="true">
+		<!--PK fields-->
+		<column name="enemyId" primary="true" type="long" />
+
+		<!--Other fields-->
+		<column name="enemyName" type="String" />
+		<column name="level" type="int" />
+		<column name="hitPoints" type="int" />
+		<column name="xpDrop" type="int" />
+		<column name="imageURL" type="String" />
+
+		<!--Finder methods-->
+		<finder name="EnemyName" return-type="Collection">
+			<finder-column name="enemyName" />
+		</finder>
+	</entity>
+
+	<entity local-service="true" name="Player" remote-service="false" uuid="true">
+		<!--PK fields-->
+		<column name="playerId" primary="true" type="long" />
+
+		<!--FK fields-->
+		<column name="userId" type="long" />
+
+		<!--Other fields-->
+		<column name="playerName" type="String" />
+		<column name="level" type="int" />
+		<column name="xpPoints" type="int" />
+		<column name="hitPoints" type="int" />
+
+		<finder name="UserId" return-type="Player">
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+
+	<entity local-service="true" name="PlayerEnemyAbility" remote-service="false" uuid="true">
+		<!--PK fields-->
+		<column name="playerEnemyAbilityId" primary="true" type="long" />
+
+		<!--Other fields-->
+		<column name="enemy" type="boolean" />
+		<column name="playerOrEnemyId" type="long" />
+		<column name="abilityId" type="long" />
+	</entity>
+
 </service-builder>
