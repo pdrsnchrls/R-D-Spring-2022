@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import ClayButton from '@clayui/button';
 import ClayModal, {useModal} from '@clayui/modal';
 import ClayCard from '@clayui/card'
+import Game from './Game'
 
 function Load() {
 	const [window, setWindow] = useState("main");
@@ -9,9 +10,9 @@ function Load() {
 	switch (window) {
 		case "play":
 			return (
-				<div className="menu-container">
+				<div className="fight-container">
 					<div className="overflow-container">
-						<h1> Hello! </h1>
+						<Game />
 					</div>
 				</div>
 			);

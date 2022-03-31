@@ -83,10 +83,6 @@
 	padding-bottom: 1rem;
 }
 
-.main-background {
-	color: black;
-}
-
 .fade-in {
 	transition: opacity 1s ease;
 }
@@ -95,3 +91,72 @@
 	opacity: 0;
 	transition: opacity 1s ease;
 }
+
+.fight-container {
+	align-content: center;
+	padding: 1rem;
+	position: relative;
+	max-height: 750px;
+	overflow: hidden;
+}
+
+.fight-background {
+	background-image: url("../images/fight_background.gif");
+	background-size: cover;
+	height: 750px;
+}
+
+.enemy-card {
+	width: 40%;
+	height: auto;
+	padding: 1rem;
+	text-align: left;
+}
+
+.enemy-row {
+
+}
+
+.user-card {
+	width: 40%;
+	height: auto;
+	padding: 1rem;
+	text-align: right;
+}
+
+.icon {
+	width:150px;
+	height:150px;
+	overflow:hidden;
+	border-color: #000000;
+	border-width: thin;
+}
+
+.icon-img {
+	max-width: 150px;
+	height: auto;
+}
+
+.user-animation {
+	animation: pulse 15s linear infinite;
+}
+
+.enemy-animation {
+	animation: pulse 10s linear infinite;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	50% {
+		-webkit-transform: scale(0.8);
+		transform: scale(0.8);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
