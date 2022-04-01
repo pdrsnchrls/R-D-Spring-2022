@@ -23,7 +23,8 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface PlayerEnemyAbilityFinder {
 
-	public java.util.List<com.liferay.react.game.core.service.model.Ability>
-		findByPlayerOrEnemyId(long playerOrEnemyId);
+	public java.util.List
+		<com.liferay.react.game.core.service.model.PlayerEnemyAbility>
+			findByPlayerOrEnemyId(long playerOrEnemyId);
 
 }

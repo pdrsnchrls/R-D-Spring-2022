@@ -17,11 +17,15 @@ package com.liferay.react.game.core.service.service.impl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.react.game.core.service.model.Ability;
 import com.liferay.react.game.core.service.model.PlayerEnemyAbility;
+import com.liferay.react.game.core.service.service.AbilityLocalService;
 import com.liferay.react.game.core.service.service.base.PlayerEnemyAbilityLocalServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Brian Wing Shun Chan
@@ -49,6 +53,22 @@ public class PlayerEnemyAbilityLocalServiceImpl
 	}
 
 	public List<Ability> getPlayerEnemyAbilities(long playerOrEnemyId) {
-		return playerEnemyAbilityFinder.findByPlayerOrEnemyId(playerOrEnemyId);
-	}
+		List<PlayerEnemyAbility> playerEnemyAbilities =  playerEnemyAbilityFinder.findByPlayerOrEnemyId(playerOrEnemyId);
+
+		List<Ability> abilities = new ArrayList<>();
+
+        for (PlayerEnemyAbility playerEnemyAbility : playerEnemyAbilities) {
+            Ability ability = _abilityLocalService.fetchAbility(playerEnemyAbility.getAbilityId());
+
+            if (Objects.nonNull(ability)) {
+                abilities.add(ability);
+            }
+        }
+
+        return abilities;
+    }
+
+    @Reference
+    private AbilityLocalService _abilityLocalService;
+
 }
