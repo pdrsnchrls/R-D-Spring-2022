@@ -48,4 +48,7 @@ public class EnemyLocalServiceImpl extends EnemyLocalServiceBaseImpl {
 		return enemyLocalService.addEnemy(enemy);
 	}
 
+	public Enemy getRandomEnemyByLevel(int level) {
+		return enemyFinder.findRandomEnemyByLevel(level);
+	}
 }
