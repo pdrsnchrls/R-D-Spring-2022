@@ -1,4 +1,0 @@
-Bundle-Name: game-rest-test
-Bundle-SymbolicName: game.rest.test
-Bundle-Version: 1.0.0
--includeresource: game.rest.client.jar=../game-rest-client/build/libs/game.rest.client-1.0.0.jar;lib:=true
