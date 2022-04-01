@@ -281,6 +281,10 @@ public class EnemyLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	public static Enemy getRandomEnemyByLevel(int level) {
+		return getService().getRandomEnemyByLevel(level);
+	}
+
 	/**
 	 * Updates the enemy in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

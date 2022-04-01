@@ -256,6 +256,9 @@ public interface EnemyLocalService
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Enemy getRandomEnemyByLevel(int level);
+
 	/**
 	 * Updates the enemy in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

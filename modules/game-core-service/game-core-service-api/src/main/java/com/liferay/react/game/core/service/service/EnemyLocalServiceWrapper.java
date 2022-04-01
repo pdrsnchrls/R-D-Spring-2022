@@ -313,6 +313,13 @@ public class EnemyLocalServiceWrapper
 		return _enemyLocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public com.liferay.react.game.core.service.model.Enemy
+		getRandomEnemyByLevel(int level) {
+
+		return _enemyLocalService.getRandomEnemyByLevel(level);
+	}
+
 	/**
 	 * Updates the enemy in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
