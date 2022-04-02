@@ -25,10 +25,10 @@ public class AbilityResourceImpl extends BaseAbilityResourceImpl {
 		long abilityId = ability.getAbilityId();
 
 		return new Ability() {{
-			id = abilityId;
-			name = ability.getAbilityName();
 			healing = ability.getHealing();
 			hitPoints = ability.getHitPoints();
+			id = abilityId;
+			name = ability.getAbilityName();
 		}};
 	}
 

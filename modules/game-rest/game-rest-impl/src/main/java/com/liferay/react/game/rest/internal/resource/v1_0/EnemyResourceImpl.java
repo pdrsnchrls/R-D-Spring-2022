@@ -1,10 +1,9 @@
 package com.liferay.react.game.rest.internal.resource.v1_0;
 
-import com.liferay.react.game.core.service.model.Ability;
 import com.liferay.react.game.core.service.service.EnemyLocalService;
 import com.liferay.react.game.core.service.service.PlayerEnemyAbilityLocalService;
 import com.liferay.react.game.rest.dto.v1_0.Enemy;
-import com.liferay.react.game.rest.dto.v1_0.Player;
+import com.liferay.react.game.rest.dto.v1_0.Ability;
 import com.liferay.react.game.rest.resource.v1_0.AbilityResource;
 import com.liferay.react.game.rest.resource.v1_0.EnemyResource;
 
@@ -14,6 +13,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Charles Pederson
@@ -37,15 +37,19 @@ public class EnemyResourceImpl extends BaseEnemyResourceImpl {
 	protected Enemy _toRESTEnemy(com.liferay.react.game.core.service.model.Enemy enemy) {
 		long enemyId = enemy.getEnemyId();
 
-		List<Ability> enemyAbilities = _playerEnemyAbilityLocalService.getPlayerEnemyAbilities(enemyId);
+		List<com.liferay.react.game.core.service.model.Ability> enemyAbilities = _playerEnemyAbilityLocalService.getPlayerEnemyAbilities(enemyId);
 
-		List<com.liferay.react.game.rest.dto.v1_0.Ability> abilitiesList = new ArrayList<>();
+		List<Ability> abilitiesList = new ArrayList<>();
 
-		for (com.liferay.react.game.core.service.model.Ability ability : enemyAbilities) {
-			try {
-				abilitiesList.add(abilityResource.getAbility(ability.getAbilityId()));
-			} catch (Exception e) {
+		if (Objects.nonNull(enemyAbilities)) {
+			for (com.liferay.react.game.core.service.model.Ability ability : enemyAbilities) {
+				try {
+					abilitiesList.add(abilityResource.getAbility(ability.getAbilityId()));
+				} catch (Exception e) {
+					e.printStackTrace();
 
+					continue;
+				}
 			}
 		}
 
@@ -53,12 +57,12 @@ public class EnemyResourceImpl extends BaseEnemyResourceImpl {
 
 		return new Enemy() {{
 			abilities = abilitiesList.toArray(new com.liferay.react.game.rest.dto.v1_0.Ability[abilitiesList.size()]);
-			name = enemy.getEnemyName();
-			id = enemyId;
-			xpDrop = enemy.getXpDrop();
-			level = enemy.getLevel();
 			hitPoints = enemy.getHitPoints();
+			id = enemyId;
 			image = enemy.getImageURL();
+			level = enemy.getLevel();
+			name = enemy.getEnemyName();
+			xpDrop = enemy.getXpDrop();
 		}};
 	}
 

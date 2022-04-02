@@ -13,6 +13,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Charles Pederson
@@ -41,13 +42,15 @@ public class PlayerResourceImpl extends BasePlayerResourceImpl {
 
 		List<Ability> abilitiesList = new ArrayList<>();
 
-		for (com.liferay.react.game.core.service.model.Ability ability : playerAbilities) {
-			try {
-				abilitiesList.add(abilityResource.getAbility(ability.getAbilityId()));
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (Objects.nonNull(playerAbilities)) {
+			for (com.liferay.react.game.core.service.model.Ability ability : playerAbilities) {
+				try {
+					abilitiesList.add(abilityResource.getAbility(ability.getAbilityId()));
+				} catch (Exception e) {
+					e.printStackTrace();
 
-				continue;
+					continue;
+				}
 			}
 		}
 
